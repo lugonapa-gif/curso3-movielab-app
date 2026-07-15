@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { contactChannels, officeHours } from "@/lib/contact";
 
 export function ContactChannels() {
@@ -6,16 +7,22 @@ export function ContactChannels() {
       <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5">
         <div className="flex items-center gap-3">
           <span className="h-3 w-3 rounded-full bg-red-600" />
+
           <div>
-            <p className="font-semibold text-white">{officeHours.status}</p>
-            <p className="text-sm text-zinc-400">{officeHours.weekdays}</p>
+            <p className="font-semibold text-white">
+              {officeHours.status}
+            </p>
+
+            <p className="text-sm text-zinc-400">
+              {officeHours.weekdays}
+            </p>
           </div>
         </div>
       </div>
 
       <div className="space-y-3">
         {contactChannels.map((channel) => (
-          <a
+          <Link
             key={channel.label}
             href={channel.href}
             className="group flex items-start gap-4 rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 transition duration-300 hover:border-red-600 hover:bg-zinc-900"
@@ -27,7 +34,7 @@ export function ContactChannels() {
               />
             </div>
 
-            <div>
+            <div className="flex-1">
               <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
                 {channel.label}
               </p>
@@ -42,10 +49,10 @@ export function ContactChannels() {
             </div>
 
             <i
-              className="fa-solid fa-arrow-up-right-from-square ml-auto mt-1 text-xs text-zinc-600 transition group-hover:text-red-500"
+              className="fa-solid fa-arrow-up-right-from-square mt-1 text-xs text-zinc-600 transition group-hover:text-red-500"
               aria-hidden="true"
             />
-          </a>
+          </Link>
         ))}
       </div>
 
@@ -74,7 +81,10 @@ export function ContactChannels() {
           </p>
 
           <p className="mt-4 inline-flex items-center gap-2 text-xs text-zinc-500">
-            <i className="fa-solid fa-clock" aria-hidden="true" />
+            <i
+              className="fa-solid fa-clock"
+              aria-hidden="true"
+            />
             {officeHours.timezone}
           </p>
         </div>
